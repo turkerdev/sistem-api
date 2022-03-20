@@ -6,7 +6,9 @@
     "dev": "nodemon -r dotenv/config src/main.ts | pino-pretty"
   },
   "dependencies": {
-    "pino": "7.9.1"
+    "fastify": "4.0.0-alpha.2",
+    "pino": "7.9.1",
+    "zod": "3.14.2"
   },
   "devDependencies": {
     "@types/node": "17.0.21",
