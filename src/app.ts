@@ -1,9 +1,27 @@
 import fastify from "fastify";
+import crypto from "node:crypto";
+import errorHandler from "./hooks/errorHandler.js";
+import notFoundHandler from "./hooks/notFound.js";
+import onRequestHook from "./hooks/onRequest.js";
+import onResponseHook from "./hooks/onResponse.js";
 import { ENV } from "./utils/env.js";
 import { logger } from "./utils/logger.js";
 
 export class App {
-  #fastify = fastify();
+  #fastify = fastify({
+    genReqId: () => crypto.randomUUID(),
+  });
+
+  constructor() {
+    this.#initializeHooks();
+  }
+
+  #initializeHooks() {
+    this.#fastify.addHook("onRequest", onRequestHook);
+    this.#fastify.addHook("onResponse", onResponseHook);
+    this.#fastify.setErrorHandler(errorHandler);
+    this.#fastify.setNotFoundHandler(notFoundHandler);
+  }
 
   listen() {
     // Use async/await try/catch when the new version released
