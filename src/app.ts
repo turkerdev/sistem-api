@@ -4,8 +4,10 @@ import errorHandler from "./hooks/errorHandler.js";
 import notFoundHandler from "./hooks/notFound.js";
 import onRequestHook from "./hooks/onRequest.js";
 import onResponseHook from "./hooks/onResponse.js";
+import validatorCompiler from "./hooks/validatorCompiler.js";
 import { ENV } from "./utils/env.js";
 import { logger } from "./utils/logger.js";
+import v1Route from "./routes/v1/route.js";
 
 export class App {
   #fastify = fastify({
@@ -14,6 +16,7 @@ export class App {
 
   constructor() {
     this.#initializeHooks();
+    this.#initializeRoutes();
   }
 
   #initializeHooks() {
@@ -21,6 +24,11 @@ export class App {
     this.#fastify.addHook("onResponse", onResponseHook);
     this.#fastify.setErrorHandler(errorHandler);
     this.#fastify.setNotFoundHandler(notFoundHandler);
+    this.#fastify.setValidatorCompiler(validatorCompiler);
+  }
+
+  #initializeRoutes() {
+    this.#fastify.register(v1Route, { prefix: "/v1" });
   }
 
   listen() {
