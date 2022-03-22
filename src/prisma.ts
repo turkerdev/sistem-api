@@ -15,5 +15,5 @@ prisma.$on("error", (e) => logger.error({ err: e.message }, "Prisma error"));
 prisma.$on("warn", ({ message }) => logger.warn({ message }, "Prisma warn"));
 prisma.$on("info", ({ message }) => logger.info({ message }, "Prisma info"));
 prisma.$on("query", ({ query, duration, params }) =>
-  logger.error({ query, duration, params }, "Prisma query")
+  logger.info({ query, duration, params }, "Prisma query")
 );
