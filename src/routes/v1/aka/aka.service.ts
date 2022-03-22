@@ -41,3 +41,36 @@ export const create = async ({ target, createdBy }: createParams) => {
 
   return aka.short;
 };
+
+interface getParams {
+  short: string;
+  clickedBy: string;
+}
+
+export const get = async ({ short, clickedBy }: getParams) => {
+  const now = new Date();
+
+  // Find the short that didnt expire
+  const aka = await prisma.aka.findFirst({
+    where: {
+      short,
+      validUntil: {
+        gte: now,
+      },
+    },
+  });
+
+  if (!aka) {
+    return null;
+  }
+
+  // Log click
+  await prisma.akaDetails.create({
+    data: {
+      AkaId: aka.id,
+      clickedBy,
+    },
+  });
+
+  return aka.target;
+};
