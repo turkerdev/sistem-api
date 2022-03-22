@@ -15,6 +15,7 @@ const schema = z.object({
       : z.number().max(65535)
   ),
   HOST: z.string().optional().default(DEFAULT_HOST),
+  DATABASE_URL: z.string(),
 });
 
 export const ENV = schema
