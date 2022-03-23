@@ -3,8 +3,8 @@ import { ZodAny } from "zod";
 
 const validatorCompiler: FastifySchemaCompiler<ZodAny> =
   ({ schema }) =>
-  async (data) => {
-    const result = await schema.spa(data);
+  (data) => {
+    const result = schema.safeParse(data);
     if (result.success) {
       return { value: result.data };
     }
