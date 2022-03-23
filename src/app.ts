@@ -9,6 +9,7 @@ import { ENV } from "./utils/env.js";
 import { logger } from "./utils/logger.js";
 import v1Route from "./routes/v1/route.js";
 import { prisma } from "./prisma.js";
+import serializerCompiler from "./hooks/serializerCompiler.js";
 
 export class App {
   #fastify = fastify({
@@ -27,6 +28,7 @@ export class App {
     this.#fastify.setErrorHandler(errorHandler);
     this.#fastify.setNotFoundHandler(notFoundHandler);
     this.#fastify.setValidatorCompiler(validatorCompiler);
+    this.#fastify.setSerializerCompiler(serializerCompiler);
   }
 
   #initializeRoutes() {
