@@ -14,10 +14,7 @@ export default async (fastify: FastifyInstance) => {
 
       const short = await create({ target, createdBy: ip });
 
-      const reply = {
-        short,
-      };
-      res.send(reply);
+      res.send({ short });
     },
   });
 
@@ -35,11 +32,7 @@ export default async (fastify: FastifyInstance) => {
         return res.callNotFound();
       }
 
-      const reply = {
-        target,
-      };
-
-      res.send(reply);
+      res.send({ target });
     },
   });
 };
