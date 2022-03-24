@@ -10,6 +10,8 @@ import { logger } from "./utils/logger.js";
 import v1Route from "./routes/v1/route.js";
 import { prisma } from "./prisma.js";
 import serializerCompiler from "./hooks/serializerCompiler.js";
+import fastifyCors from "fastify-cors";
+import corsOptions from "./plugins/cors.js";
 
 export class App {
   #fastify = fastify({
@@ -18,6 +20,7 @@ export class App {
 
   constructor() {
     this.#initializeHooks();
+    this.#initializePlugins();
     this.#initializeRoutes();
     this.#initializeConnections();
   }
@@ -29,6 +32,10 @@ export class App {
     this.#fastify.setNotFoundHandler(notFoundHandler);
     this.#fastify.setValidatorCompiler(validatorCompiler);
     this.#fastify.setSerializerCompiler(serializerCompiler);
+  }
+
+  #initializePlugins() {
+    this.#fastify.register(fastifyCors, corsOptions);
   }
 
   #initializeRoutes() {

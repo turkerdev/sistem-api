@@ -8,6 +8,7 @@
   "dependencies": {
     "@prisma/client": "3.11.0",
     "fastify": "4.0.0-alpha.2",
+    "fastify-cors": "git://github.com/turkerdev/fastify-cors.git#fastify4alpha",
     "nanoid": "3.3.1",
     "pino": "7.9.1",
     "sistem-shared": "git://github.com/turkerdev/sistem-shared.git#pre-v0.0.5",
