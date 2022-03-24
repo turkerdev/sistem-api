@@ -7,7 +7,7 @@ const serializerCompiler: FastifySerializerCompiler<ZodAny> =
   (data) => {
     const result = schema.safeParse(data);
     if (result.success) {
-      return result.data;
+      return JSON.stringify(result.data);
     }
     throw new APIError(500, {
       path: "modal",
