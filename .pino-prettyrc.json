@@ -1,0 +1,5 @@
+{
+  "ignore": "pid,hostname",
+  "translateTime": "SYS:HH:MM:ss",
+  "minimumLevel": "debug"
+}

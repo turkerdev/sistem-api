@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Aka {
+  id         String       @id @default(uuid())
+  short      String
+  target     String
+  createdAt  DateTime     @default(now())
+  validUntil DateTime
+  createdBy  String
+  details    AkaDetails[]
+}
+
+model AkaDetails {
+  id        String   @id @default(uuid())
+  clickedBy String
+  clickedAt DateTime @default(now())
+  Aka       Aka      @relation(fields: [AkaId], references: [id])
+  AkaId     String
+}

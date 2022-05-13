@@ -1,0 +1,36 @@
+{
+  "name": "sistem-api",
+  "type": "module",
+  "scripts": {
+    "prepare": "husky install",
+    "dev": "nodemon -r dotenv/config src/main.ts | pino-pretty"
+  },
+  "dependencies": {
+    "@prisma/client": "3.11.0",
+    "fastify": "4.0.0-alpha.2",
+    "fastify-cors": "git://github.com/turkerdev/fastify-cors.git#fastify4alpha",
+    "nanoid": "3.3.1",
+    "pino": "7.9.1",
+    "sistem-shared": "git://github.com/turkerdev/sistem-shared.git#pre-v0.0.5",
+    "zod": "3.14.2"
+  },
+  "devDependencies": {
+    "@types/node": "17.0.21",
+    "@typescript-eslint/eslint-plugin": "5.15.0",
+    "@typescript-eslint/parser": "5.15.0",
+    "dotenv": "16.0.0",
+    "eslint": "8.11.0",
+    "husky": "7.0.4",
+    "lint-staged": "12.3.7",
+    "nodemon": "2.0.15",
+    "pino-pretty": "7.5.4",
+    "prettier": "2.6.0",
+    "prisma": "3.11.0",
+    "ts-node": "10.7.0",
+    "typescript": "4.6.2"
+  },
+  "engines": {
+    "node": ">=16.14.0",
+    "npm": ">=8.3.1"
+  }
+}
